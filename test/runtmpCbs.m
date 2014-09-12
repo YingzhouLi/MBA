@@ -4,12 +4,10 @@ addpath('../src/');
 fi = 1;
 
 N = 64*2;
-EPS = 10;%5;
-EXT = 0;
+EPS = 10;
 EL = 2;
 SL = log2(N)-EL;
-stoplev = 5;%>=5
-
+stoplev = 5;
 if(1)
     switch fi
         case 0
@@ -24,7 +22,7 @@ if(1)
     [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
     
     if(1)
-        f = randn(N,N) + i*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
+        f = randn(N,N) + sqrt(-1)*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
         binstr = sprintf('f_%d.bin', N);
         fid = fopen(binstr,'w');
         string = {'CpxNumMat'};
@@ -37,7 +35,7 @@ if(1)
         f = deserialize(fid, string);
     end
     
-    t0 = cputime;
+    
     maskcase = 4;
     switch maskcase
         case 1
@@ -55,10 +53,8 @@ if(1)
     end
     f = f.*mask;
     
-    profile on;
-    u = bfioChebyshev(N,SL,EL,EXT,EPS,fun,f,mats,dir,dirlev,stoplev,1); %LEXING
-    profile report;
-    
+    t0 = cputime;
+    u = bfioChebyshev(N,N,SL,EL,EPS,fun,f,mats,dir,dirlev,stoplev,1);
     te = cputime-t0;
     
     NC = 128;

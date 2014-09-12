@@ -6,7 +6,6 @@ fi = 3;
 
 N = 64*2;
 EPS = 10;%5;
-EXT = 0;
 EL = 3;
 SL = log2(N)-EL;
 stoplev = 5;%>=5
@@ -25,7 +24,7 @@ if(1)
     [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
     
     if(1)
-        f = randn(N,N) + i*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
+        f = randn(N,N) + sqrt(-1)*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
         binstr = sprintf('f_%d.bin', N);
         fid = fopen(binstr,'w');
         string = {'CpxNumMat'};
@@ -40,7 +39,7 @@ if(1)
     
     t0 = cputime;
 
-    u = bfioHFFT(N,SL,EL,EXT,EPS,fun,f,mats,dir,stoplev);
+    u = bfioHFFT(N,N,SL,EL,EPS,fun,f,mats,dir,stoplev);
 
     te = cputime-t0;
     
