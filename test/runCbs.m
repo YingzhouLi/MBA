@@ -2,9 +2,9 @@ function runCbs(N, func_name, EPS, fig)
 
 addpath('../src/');
 
-EL = 2;
+EL = 3;
 SL = log2(N)-EL;
-stoplev = log2(N) - EL;
+stoplev = 5;
 
 switch func_name
     case 'funF'
@@ -19,14 +19,14 @@ end
 
 [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
 
-if(1)
+if(0)
     f = randn(N,N) + sqrt(-1)*randn(N,N);
     binstr = sprintf('f_%d.bin', N);
     fid = fopen(binstr,'w');
     string = {'CpxNumMat'};
     serialize(fid, f, string);
 end
-if(0)
+if(1)
     binstr = sprintf('f_%d.bin', N);
     fid = fopen(binstr,'r');
     string = {'CpxNumMat'};
