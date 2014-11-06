@@ -9,8 +9,8 @@ if Nk<=2^stoplev
     [x1,x2] = ndgrid(xg);
     xs = [x1(:)'; x2(:)'];
     u = zeros(Nx^2,1);
-    for cnt = 1:Nx^2
-        u(cnt) = fun(Nx,xs(:,cnt),ks)*(f(:));
+    for cnt = 1:Nk^2
+        u = u + fun(xs,ks(:,cnt))*(f(cnt));
     end
     u = reshape(u,Nx,Nx);
 else

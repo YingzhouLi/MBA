@@ -61,7 +61,7 @@ for z1=0:nz-1
                                     sp1 = (so1+k1)*kB - Nk/2;
                                     sp2 = (so2+k2)*kB - Nk/2;
                                     src = [sp1(:)'; sp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,kB,kB);
                                     all = all.*scl;
                                     %transform
@@ -71,7 +71,7 @@ for z1=0:nz-1
                                     kp1 = (ko1+k1)*kB - Nk/2;
                                     kp2 = (ko2+k2)*kB - Nk/2;
                                     src = [kp1(:)'; kp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,NG,NG);
                                     all = all./scl;
                                     
@@ -91,7 +91,7 @@ for z1=0:nz-1
                                             cp1 = (ko1+c1)*kB/2 - Nk/2;
                                             cp2 = (ko2+c2)*kB/2 - Nk/2;
                                             src = [cp1(:)'; cp2(:)'];
-                                            scl = fun(Nk,trg,src);
+                                            scl = fun(trg,src);
                                             scl = reshape(scl,NG,NG);
                                             tmp = tmp.*scl;
                                             %transform
@@ -103,7 +103,7 @@ for z1=0:nz-1
                                     kp1 = (ko1+k1)*kB - Nk/2;
                                     kp2 = (ko2+k2)*kB - Nk/2;
                                     src = [kp1(:)'; kp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,NG,NG);
                                     all = all./scl;
 
@@ -140,7 +140,7 @@ for z1=0:nz-1
                                 xp1 = (xo1+x1)*xB;
                                 xp2 = (xo2+x2)*xB;
                                 trg = [xp1(:)'; xp2(:)'];
-                                all = fun(Nk,trg,src) * NOW{k1+1,k2+1}{x1+1,x2+1}(:);
+                                all = fun(trg,src) * NOW{k1+1,k2+1}{x1+1,x2+1}(:);
                                 NOW{k1+1,k2+1}{x1+1,x2+1} = reshape(all,NG,NG);
                             end
                         end
@@ -183,7 +183,7 @@ for z1=0:nz-1
                                     xp1 = (xo1+x1)*xB;
                                     xp2 = (xo2+x2)*xB;
                                     trg = [xp1(:)'; xp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,NG,NG);
                                     all = all./scl;
                                     %--
@@ -200,7 +200,7 @@ for z1=0:nz-1
                                             dp1 = (xo1+d1)*xB/2;
                                             dp2 = (xo2+d2)*xB/2;
                                             trg = [dp1(:)'; dp2(:)'];
-                                            scl = fun(Nk,trg,src);
+                                            scl = fun(trg,src);
                                             scl = reshape(scl,NG,NG);
                                             tmp = tmp.*scl;
                                             %put
@@ -215,7 +215,7 @@ for z1=0:nz-1
                                     xp1 = (xo1+x1)*xB;
                                     xp2 = (xo2+x2)*xB;
                                     trg = [xp1(:)'; xp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,NG,NG);
                                     all = all./scl;
 
@@ -228,7 +228,7 @@ for z1=0:nz-1
                                     tp1 = (to1+x1)*xB;
                                     tp2 = (to2+x2)*xB;
                                     trg = [tp1(:)'; tp2(:)'];
-                                    scl = fun(Nk,trg,src);
+                                    scl = fun(trg,src);
                                     scl = reshape(scl,NT,NT);
                                     all = all.*scl;
 

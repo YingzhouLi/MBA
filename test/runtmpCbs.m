@@ -1,23 +1,23 @@
 close all;
 addpath('../src/');
 
-fi = 1;
+fi = 2;
 
-N = 64*2;
-EPS = 10;
-EL = 2;
+N = 256;
+EPS = 9;
+EL = 3;
 SL = log2(N)-EL;
 stoplev = 5;
 if(1)
     switch fi
         case 0
-            fun = @fun0;
+            fun = @(x,k)fun0(N,x,k);
         case 1
-            fun = @fun1;
+            fun = @(x,k)fun1(N,x,k);
         case 2
-            fun = @fun2;
+            fun = @(x,k)fun2(N,x,k);
         case 3
-            fun = @fun3;
+            fun = @(x,k)fun3(N,x,k);
     end
     [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
     
@@ -57,7 +57,7 @@ if(1)
     u = bfioChebyshev(N,N,SL,EL,EPS,fun,f,mats,dir,dirlev,stoplev,1);
     te = cputime-t0;
     
-    NC = 128;
+    NC = 256;
     t0 = cputime;
     relerr = bfio_check(N,fun,f,u,NC);
     tc = (cputime-t0)*N*N/NC;
@@ -65,6 +65,7 @@ if(1)
     
     fprintf(1,'N %d\n', N);
     fprintf(1,'EPS %d\n', EPS);
+    fprintf(1,'EL %d\n', EL);
     fprintf(1,'stoplev %d\n', stoplev);
     fprintf(1,'relerr %d\n', relerr);
     fprintf(1,'eval time %d\n',te);

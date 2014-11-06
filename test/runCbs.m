@@ -8,13 +8,13 @@ stoplev = 5;
 
 switch func_name
     case 'funF'
-        fun = @funF;
+        fun = @(x,k)funF(N,x,k);
     case 'fun0'
-        fun = @fun0;
+        fun = @(x,k)fun0(N,x,k);
     case 'fun1'
-        fun = @fun1;
+        fun = @(x,k)fun1(N,x,k);
     case 'fun2'
-        fun = @fun2;
+        fun = @(x,k)fun2(N,x,k);
 end
 
 [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
@@ -55,7 +55,7 @@ t0 = cputime;
 u = bfioChebyshev(N,N,SL,EL,EPS,fun,f,mats,dir,dirlev,stoplev,1);
 te = cputime-t0;
 
-NC = 128;
+NC = 256;
 t0 = cputime;
 relerr = bfio_check(N,fun,f,u,NC);
 tc = (cputime-t0)*N*N/NC;

@@ -11,7 +11,7 @@ if Nk<=2^stoplev
     xs = [x1(:)'; x2(:)'];
     u = zeros(Nk^2,1);
     for cnt = 1:Nk^2
-        u(cnt) = fun(Nk,xs(:,cnt),ks)*(f(:));
+        u(cnt) = fun(xs(:,cnt),ks)*(f(:));
     end
     u = reshape(u,Nk,Nk);
 else

@@ -25,7 +25,7 @@ xg = [0:1/NN:(NN-1)/NN];
 xs = [x1(:)'; x2(:)'];
 tmp = zeros(NN^2,1);
 for cnt = 1:NN^2
-    tmp(cnt) = fun(NN,xs(:,cnt),ks)*(f(:));
+    tmp(cnt) = fun(xs(:,cnt),ks)*(f(:));
 end
 u = u + reshape(tmp,NN,NN);
 

@@ -8,7 +8,7 @@ function relerr = bfio_check(N,fun,f,u,NC)
   for g=1:NC
     x1 = floor(rand(1)*N);    x2 = floor(rand(1)*N);
     app(g) = u(x1+1,x2+1);
-    ext(g) = sum(fun(N,[x1/N;x2/N],ks)*(f(:)));
+    ext(g) = sum(fun([x1/N;x2/N],ks)*(f(:)));
   end
   err = app-ext;
   relerr = norm(err)/norm(ext);
