@@ -4,7 +4,7 @@ addpath('../src/');
 fi = 2;
 
 N = 256;
-EPS = 9;
+EPS = 2;
 EL = 3;
 SL = log2(N)-EL;
 stoplev = 5;
