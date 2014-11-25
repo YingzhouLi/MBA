@@ -20,7 +20,7 @@ if(1)
     [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
     
     if(1)
-        f = randn(N,N,N) + sqrt(-1)*randn(N,N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
+        f = randn(N,N,N) + sqrt(-1)*randn(N,N,N);
         binstr = sprintf('f_%d.bin', N);
         fid = fopen(binstr,'w');
         string = {'CpxNumTns'};

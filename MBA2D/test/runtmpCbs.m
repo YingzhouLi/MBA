@@ -1,10 +1,10 @@
 close all;
 addpath('../src/');
 
-fi = 2;
+fi = 1;
 
 N = 256;
-EPS = 2;
+EPS = 5;
 EL = 3;
 SL = log2(N)-EL;
 stoplev = 5;
@@ -18,7 +18,7 @@ if(1)
     [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
     
     if(1)
-        f = randn(N,N) + sqrt(-1)*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
+        f = randn(N,N) + sqrt(-1)*randn(N,N);
         binstr = sprintf('f_%d.bin', N);
         fid = fopen(binstr,'w');
         string = {'CpxNumMat'};

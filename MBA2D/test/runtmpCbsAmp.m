@@ -22,7 +22,7 @@ if(1)
     [arp,aunerr] = bfio_setup(N, aun);
     
     if(1)
-        f = randn(N,N) + sqrt(-1)*randn(N,N);  %mid = [N/4:3*N/4];  f(mid,mid) = 0;
+        f = randn(N,N) + sqrt(-1)*randn(N,N);
         binstr = sprintf('f_%d.bin', N);
         fid = fopen(binstr,'w');
         string = {'CpxNumMat'};
