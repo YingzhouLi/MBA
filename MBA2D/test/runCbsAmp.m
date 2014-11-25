@@ -1,4 +1,4 @@
-function runCbs(N, func_name, EPS, fig)
+function runCbsAmp(N, func_name, EPS, fig)
 
 addpath('../src/');
 
@@ -11,15 +11,16 @@ switch func_name
         fun = @(x,k)funF(N,x,k);
     case 'fun0'
         fun = @(x,k)fun0(N,x,k);
+        aun = @(x,k)aun0(N,x,k);
     case 'fun1'
         fun = @(x,k)fun1(N,x,k);
-    case 'fun2'
-        fun = @(x,k)fun2(N,x,k);
+        aun = @(x,k)aun1(N,x,k);
 end
 
 [mats,dir,dirlev] = bfio_prep(EL,EPS,N,stoplev);
+[arp,~] = bfio_setup(N, aun);
 
-if(0)
+if(1)
     f = randn(N,N) + sqrt(-1)*randn(N,N);
     binstr = sprintf('f_%d.bin', N);
     fid = fopen(binstr,'w');
@@ -52,12 +53,12 @@ end
 f = f.*mask;
 
 t0 = cputime;
-u = bfioChebyshev(N,N,SL,EL,EPS,fun,f,mats,dir,dirlev,stoplev,1);
+u = bfioChebyshevAmp(N,N,SL,EL,EPS,fun,aun,arp,f,mats,dir,dirlev,stoplev,1);
 te = cputime-t0;
 
 NC = 256;
 t0 = cputime;
-relerr = bfio_check(N,fun,f,u,NC);
+relerr = bfio_check_amp(N,fun,aun,f,u,NC);
 tc = (cputime-t0)*N*N/NC;
 rt = tc/te;
 
